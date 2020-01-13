@@ -18,7 +18,11 @@ namespace ProjectTwo
             computer.ChooseGesture();
 
 
+
             Console.WriteLine($"{computer.name}'s {computer.move.name} vs. {human.name}'s {human.move.name}");
+
+            human.move.Matchup(computer.move);
+
 
             Console.ReadLine();
         }

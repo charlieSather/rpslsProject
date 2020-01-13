@@ -15,7 +15,7 @@ namespace ProjectTwo
 
         }
 
-
+        public abstract void Matchup(Gesture gesture);
 
 
     }

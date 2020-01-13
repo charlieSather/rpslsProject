@@ -14,10 +14,27 @@ namespace ProjectTwo
             name = "Lizard";
         }
 
-
-        public override string ToString()
+        public override void Matchup(Gesture gesture)
         {
-            return name;
+            switch (gesture.name)
+            {
+                case ("Spock"):
+                    Console.WriteLine($"{name} poisons {gesture.name}!!!");
+                    break;
+                case ("Paper"):
+                    Console.WriteLine($"{name} eats {gesture.name}!!!");
+                    break;
+                case ("Rock"):
+                    Console.WriteLine($"{gesture.name} crushes {name}!!!");
+                    break;
+                case ("Scissors"):
+                    Console.WriteLine($"{gesture.name} decapitates {name}!!!");
+                    break;
+                default:
+                    Console.WriteLine("No one wins, pick again");
+                    break;
+            }
         }
+
     }
 }

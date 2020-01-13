@@ -10,16 +10,20 @@ namespace ProjectTwo
     {
         Player playerOne;
         Player playerTwo;
+        string gameMode;
 
         public void Run()
         {            
             SetupPlayers();
 
-            playerOne.ChooseGesture();
-            playerTwo.ChooseGesture();
+            Match match = new Match(playerOne, playerTwo, gameMode);
+            match.BeginMatch();
 
-            Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
-            playerOne.move.Matchup(playerTwo.move);
+          //  Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
+         //   playerOne.move.Matchup(playerTwo.move);
+
+
+
 
             Console.ReadLine();
         }
@@ -42,6 +46,7 @@ namespace ProjectTwo
                     playerName = PromptPlayerName();
                     playerOne = new Human(playerName);
                     playerTwo = new Computer();
+                    gameMode = "Single Player";
 
                     validInput = true;
                 }
@@ -55,11 +60,12 @@ namespace ProjectTwo
                     playerName = PromptPlayerName();
                     playerTwo = new Human(playerName);
 
+                    gameMode = "Multiplayer";
                     validInput = true;
                 }
                 else
                 {
-                    Console.WriteLine("invalid selection please try again");
+                    Console.WriteLine("\ninvalid selection please try again");
                 }
             }
         }

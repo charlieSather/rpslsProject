@@ -14,28 +14,37 @@ namespace ProjectTwo
             name = "Lizard";
         }
 
-        public override void Matchup(Gesture gesture)
+        public override bool Matchup(Player playerOne, Player playerTwo)
         {
-            int outcome = 3;
+            bool successfulRound = false;
 
-            switch (gesture.name)
+            switch (playerTwo.move.name)
             {
                 case ("Spock"):
-                    Console.WriteLine($"{name} poisons {gesture.name}!!!");
+                    Console.WriteLine($"{name} poisons {playerTwo.move.name}!!!");
+                    playerOne.WinRound();
+                    successfulRound = true;
                     break;
                 case ("Paper"):
-                    Console.WriteLine($"{name} eats {gesture.name}!!!");
+                    Console.WriteLine($"{name} eats {playerTwo.move.name}!!!");
+                    playerOne.WinRound();
+                    successfulRound = true;
                     break;
                 case ("Rock"):
-                    Console.WriteLine($"{gesture.name} crushes {name}!!!");
+                    Console.WriteLine($"{playerTwo.move.name} crushes {name}!!!");
+                    playerTwo.WinRound();
+                    successfulRound = true;
                     break;
                 case ("Scissors"):
-                    Console.WriteLine($"{gesture.name} decapitates {name}!!!");
+                    Console.WriteLine($"{playerTwo.move.name} decapitates {name}!!!");
+                    playerTwo.WinRound();
+                    successfulRound = true;
                     break;
                 default:
                     Console.WriteLine("No one wins, pick again");
                     break;
             }
+            return successfulRound;
         }
 
     }

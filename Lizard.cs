@@ -16,6 +16,8 @@ namespace ProjectTwo
 
         public override void Matchup(Gesture gesture)
         {
+            int outcome = 3;
+
             switch (gesture.name)
             {
                 case ("Spock"):

@@ -8,23 +8,74 @@ namespace ProjectTwo
 {
     class Simulation
     {
+        Player playerOne;
+        Player playerTwo;
+
         public void Run()
-        {
-            Human human = new Human("Carl");
-            Computer computer = new Computer();
-          //  human.PrintMoves();
+        {            
+            SetupPlayers();
 
-            human.ChooseGesture();
-            computer.ChooseGesture();
+            playerOne.ChooseGesture();
+            playerTwo.ChooseGesture();
 
-
-
-            Console.WriteLine($"{computer.name}'s {computer.move.name} vs. {human.name}'s {human.move.name}");
-
-            human.move.Matchup(computer.move);
-
+            Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
+            playerOne.move.Matchup(playerTwo.move);
 
             Console.ReadLine();
+        }
+
+        public void SetupPlayers()
+        {
+            Console.WriteLine("Please select game mode");
+            Console.WriteLine("1: Single Player\n2: Multiplayer");
+
+            bool validInput = false;
+            string input;
+            string playerName;
+
+            while(validInput == false)
+            {
+                input = Console.ReadLine();
+                if(input == "1")
+                {
+                    Console.WriteLine("\nSingle Player it is!\nPlayer one please enter your name");
+                    playerName = PromptPlayerName();
+                    playerOne = new Human(playerName);
+                    playerTwo = new Computer();
+
+                    validInput = true;
+                }
+                else if(input == "2")
+                {
+                    Console.WriteLine("\nMultiplayer it is!\nPlayer one please enter your name");
+                    playerName = PromptPlayerName(); 
+                    playerOne = new Human(playerName);
+
+                    Console.WriteLine("\nPlayer two please enter your name");
+                    playerName = PromptPlayerName();
+                    playerTwo = new Human(playerName);
+
+                    validInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("invalid selection please try again");
+                }
+            }
+        }
+
+        public string PromptPlayerName()
+        {
+            string input = "";
+            while(input == "")
+            {
+                input = Console.ReadLine();
+                if(input == "")
+                {
+                    Console.WriteLine("Please enter a name");
+                }
+            }
+            return input;
         }
     }
 }

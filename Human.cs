@@ -16,7 +16,8 @@ namespace ProjectTwo
 
         public override void ChooseGesture()
         {
-            Console.WriteLine($"Please select a move {name}");
+            Console.WriteLine($"\nPlease select a move {name}");
+            Console.WriteLine($"\nPlease select a move {name}");
 
             bool validInput = false;
             string input;
@@ -42,6 +43,7 @@ namespace ProjectTwo
                 }
             }
             this.move = move;
+            Console.WriteLine();
         }
     }
 }

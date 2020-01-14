@@ -19,7 +19,8 @@ namespace ProjectTwo
             DisplayRules();
             SetGameMode();
             SetPlayers();
-            PlayRounds();
+            //PlayRounds();
+            PlayRounds2();
             DisplayWinner();
             PromptPlayAgain();
         }
@@ -134,6 +135,37 @@ namespace ProjectTwo
                     break;
                 }
             }                   
+        }
+        public void PlayRounds2()
+        {
+            bool hasWinner = false;
+            Matchup matchup = new Matchup();
+            matchup.init();
+
+
+            for (int i = 0; i < numRounds; i++)
+            {
+                while (hasWinner == false)
+                {
+                    playerOne.ChooseGesture();
+                    playerTwo.ChooseGesture();
+
+                    Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
+
+                    hasWinner = matchup.DetermineWinner(playerOne, playerTwo);
+
+                    if(hasWinner == false)
+                    {
+                        Console.WriteLine("Draw please select again\n");
+                    }
+
+                }
+                hasWinner = false;
+                if (playerOne.score > 1 || playerTwo.score > 1)
+                {
+                    break;
+                }
+            }
         }
        
         public void PromptPlayAgain()

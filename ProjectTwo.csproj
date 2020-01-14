@@ -47,7 +47,7 @@
     <Compile Include="Gesture.cs" />
     <Compile Include="Human.cs" />
     <Compile Include="Lizard.cs" />
-    <Compile Include="Match.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Paper.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />

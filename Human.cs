@@ -8,41 +8,68 @@ namespace ProjectTwo
 {
     class Human : Player
     {
-        public Human(string name)
+        public Human()
         {
-            this.name = name;
             move = null;
         }
 
         public override void ChooseGesture()
         {
             Console.WriteLine($"\nPlease select a move {name}");
+            PrintMoves();
+            string input = Console.ReadLine();
 
-            bool validInput = false;
-            string input;
-            Gesture move = null;
-
-            while(validInput == false)
+            switch (input)
             {
-                PrintMoves();
-                input = Console.ReadLine();       
-                
-                foreach(Gesture gesture in moves)
+                case ("1"):
+                    move = moves[int.Parse(input) - 1];
+                    break;
+                case ("2"):
+                    move = moves[int.Parse(input) - 1];
+                    break;
+                case ("3"):
+                    move = moves[int.Parse(input) - 1];
+                    break;
+                case ("4"):
+                    move = moves[int.Parse(input) - 1];
+                    break;
+                case ("5"):
+                    move = moves[int.Parse(input) - 1];
+                    break;
+                default:
+                    Console.WriteLine("\nThat's not a move!!!\nTry Again.");
+                    ChooseGesture();
+                    break;
+            }
+            Console.WriteLine($"{move.name} Selected!\n");
+
+        }
+
+        public override void SetName()
+        {
+            string input = "";
+            Console.WriteLine("\nPlease enter a name for player");
+            while (input == "")
+            {
+                input = Console.ReadLine();
+                if (input == "")
                 {
-                    if(input.ToLower() == gesture.name.ToLower())
-                    {
-                        move = gesture;
-                        validInput = true;
-                        break;
-                    }
-                }
-                if(validInput == false)
-                {
-                    Console.WriteLine("\nSorry we could not find your move. Please try again.");
+                    Console.WriteLine("Please enter a name");
                 }
             }
-            this.move = move;
-            Console.WriteLine();
+            name = input;
+            Console.WriteLine($"Thanks {name}");
         }
+
+        public void PrintMoves()
+        {
+            int num = 1;
+            for (int i = 0; i < moves.Count; i++)
+            {
+                Console.WriteLine($"{num}: {moves[i].name}");
+                num++;
+            }
+        }
+
     }
 }

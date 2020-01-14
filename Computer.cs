@@ -10,7 +10,6 @@ namespace ProjectTwo
     {
         Random rand;
 
-
         public Computer()
         {
             name = "Computer";
@@ -20,7 +19,8 @@ namespace ProjectTwo
         public override void ChooseGesture()
         {
             move = moves[rand.Next(0, moves.Count)];
+            Console.WriteLine($"{name} selects {move.name}!\n");
         }
-
+        public override void SetName() { }
     }
 }

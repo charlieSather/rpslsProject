@@ -8,12 +8,11 @@ namespace ProjectTwo
 {
     abstract class Player
     {
-        public int wins { get; private set; }
+        public int score { get; set; }
         public Gesture move { get; set; }
         public List<Gesture> moves { get; private set; }
 
         public string name { get; set; }
-
 
         public Player()
         {
@@ -27,22 +26,8 @@ namespace ProjectTwo
             };
         }
 
-        public void WinRound()
-        {
-            wins++;
-        }
-
-        public void PrintMoves()
-        {
-            for(int i = 0; i < moves.Count; i++)
-            {
-                Console.WriteLine(moves[i].name);
-            }
-        }
-
         public abstract void ChooseGesture();
-
-
+        public abstract void SetName();
 
 
     }

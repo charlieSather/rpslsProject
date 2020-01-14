@@ -22,22 +22,22 @@ namespace ProjectTwo
             {
                 case ("Spock"):
                     Console.WriteLine($"{name} poisons {playerTwo.move.name}!!!");
-                    playerOne.WinRound();
+                    playerOne.score++;
                     successfulRound = true;
                     break;
                 case ("Paper"):
                     Console.WriteLine($"{name} eats {playerTwo.move.name}!!!");
-                    playerOne.WinRound();
+                    playerOne.score++;
                     successfulRound = true;
                     break;
                 case ("Rock"):
                     Console.WriteLine($"{playerTwo.move.name} crushes {name}!!!");
-                    playerTwo.WinRound();
+                    playerTwo.score++;
                     successfulRound = true;
                     break;
                 case ("Scissors"):
                     Console.WriteLine($"{playerTwo.move.name} decapitates {name}!!!");
-                    playerTwo.WinRound();
+                    playerTwo.score++;
                     successfulRound = true;
                     break;
                 default:

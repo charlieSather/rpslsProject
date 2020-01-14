@@ -26,28 +26,8 @@ namespace ProjectTwo
 
         public void BeginMatch()
         {
-            int numRounds = 3;
-            bool successfulRound = false;
-
-            for(int i = 0; i < numRounds; i++)
-            {
-
-                while(successfulRound == false)
-                {
-                    playerOne.ChooseGesture();
-                    playerTwo.ChooseGesture();
-
-                    Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
-                    successfulRound = playerOne.move.Matchup(playerOne, playerTwo);
-                }
-
-                successfulRound = false;
-            }
-
-            Console.WriteLine($"{playerOne.name} has {playerOne.wins}");
-            Console.WriteLine($"{playerTwo.name} has {playerTwo.wins}");
-
-            DisplayWinner();
+            //Round2();
+            Round();
         }
 
         public void DisplayWinner()
@@ -62,7 +42,59 @@ namespace ProjectTwo
             }
         }
 
+        public void Round()
+        {
+            int roundResult = 0;
+            int numRounds = 3;
+
+            for(int i = 0; i < numRounds; i++)
+            {
+                while (roundResult == 0)
+                {
+                    playerOne.ChooseGesture();
+                    playerTwo.ChooseGesture();
+
+                    Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
+                    
+                    roundResult = playerOne.move.Matchup(playerTwo.move);
+                    if(roundResult == 1)
+                    {
+                        playerOne.WinRound();
+                    }
+                    else if (roundResult == 2)
+                    {
+                        playerTwo.WinRound();
+                    }
 
 
+                }
+                roundResult = 0;
+            }
+
+            DisplayWinner();                           
+        }
+        public void Round2()
+        {
+            int numRounds = 3;
+            bool successfulRound = false;
+
+            for (int i = 0; i < numRounds; i++)
+            {
+
+                while (successfulRound == false)
+                {
+                    playerOne.ChooseGesture();
+                    playerTwo.ChooseGesture();
+
+                    Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
+
+                    successfulRound = playerOne.move.Matchup(playerOne, playerTwo);
+                }
+
+                successfulRound = false;
+            }
+
+            DisplayWinner();
+        }
     }
 }

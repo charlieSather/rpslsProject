@@ -207,7 +207,7 @@ namespace ProjectTwo
 
                 if (input.ToLower() == "yes")
                 {
-                    //Run();
+                    BeginMatch();
                     validInput = true;
                 }
                 else if (input.ToLower() == "no")

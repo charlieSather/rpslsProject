@@ -15,7 +15,6 @@ namespace ProjectTwo
 
         }
 
-        public abstract bool Matchup(Player playerOne, Player playerTwo);
         public abstract int Matchup(Gesture gesture);
 
 

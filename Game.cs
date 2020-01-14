@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,17 +12,16 @@ namespace ProjectTwo
         Player playerOne;
         Player playerTwo;
         string gameMode;
-        int numRounds = 3;
+        readonly int numRounds = 3;
 
         public void BeginMatch()
         {
             DisplayRules();
             SetGameMode();
             SetPlayers();
-            Round();
+            PlayRounds();
             DisplayWinner();
             PromptPlayAgain();
-            //Round2();
         }
         public void SetPlayers()
         {
@@ -63,46 +63,7 @@ namespace ProjectTwo
                     break;
             }
         }
-
-        public void SetupPlayers()
-        {
-           
-            bool validInput = false;
-            string input;
-            string playerName;
-
-            while (validInput == false)
-            {
-                input = Console.ReadLine();
-                if (input == "1")
-                {
-                    Console.WriteLine("\nSingle Player it is!\nPlayer one please enter your name");
-                   // playerName = PromptPlayerName();
-                   // playerOne = new Human(playerName);
-                    playerTwo = new Computer();
-                    gameMode = "Single Player";
-
-                    validInput = true;
-                }
-                else if (input == "2")
-                {
-                    Console.WriteLine("\nMultiplayer it is!\nPlayer one please enter your name");
-                   // playerName = PromptPlayerName();
-                    //playerOne = new Human(playerName);
-
-                    Console.WriteLine("\nPlayer two please enter your name");
-                   // playerName = PromptPlayerName();
-                  //  playerTwo = new Human(playerName);
-
-                    gameMode = "Multiplayer";
-                    validInput = true;
-                }
-                else
-                {
-                    Console.WriteLine("\ninvalid selection please try again");
-                }
-            }
-        }
+       
         public void DisplayRules()
         {
             Console.WriteLine("Welcome to Rock Paper Scissors Lizard Spock!!!\n");
@@ -141,7 +102,7 @@ namespace ProjectTwo
             }
         }
 
-        public void Round()
+        public void PlayRounds()
         {
             int roundResult = 0;
 
@@ -174,28 +135,7 @@ namespace ProjectTwo
                 }
             }                   
         }
-        public void Round2()
-        {
-            bool successfulRound = false;
-
-            for (int i = 0; i < numRounds; i++)
-            {
-
-                while (successfulRound == false)
-                {
-                    playerOne.ChooseGesture();
-                    playerTwo.ChooseGesture();
-
-                    Console.WriteLine($"{playerOne.name}'s {playerOne.move.name} vs. {playerTwo.name}'s {playerTwo.move.name}");
-
-                    successfulRound = playerOne.move.Matchup(playerOne, playerTwo);
-                }
-
-                successfulRound = false;
-            }
-
-            DisplayWinner();
-        }
+       
         public void PromptPlayAgain()
         {
             Console.WriteLine("\nPlay Again? (yes or no)");
@@ -207,11 +147,19 @@ namespace ProjectTwo
 
                 if (input.ToLower() == "yes")
                 {
+                    Console.Clear();
                     BeginMatch();
                     validInput = true;
                 }
                 else if (input.ToLower() == "no")
                 {
+                    Console.WriteLine("\nThis program will self destruct in...");
+                    Thread.Sleep(1000);
+                    for(int i = 3; i > 0; i--)
+                    {
+                        Console.WriteLine(i);
+                        Thread.Sleep(1000);
+                    }
                     validInput = true;
                 }
                 else
